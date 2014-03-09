@@ -4,50 +4,19 @@ apply plugin:'groovy'
 
 sourceSets {
     main {
-        java { srcDirs = [] }
-        groovy { srcDir = 'src' }
+        java { project.srcDirs = [] }
+        groovy { project.srcDir = 'src' }
     }
     test {
-        java { srcDirs = [] }
-        groovy { srcDir = 'src' }
+        java { project.srcDirs = [] }
+        groovy { project.srcDir = 'src' }
     }
 }
 
-
-task sourceSetJavaProperties << {
-    sourceSets {
-        main {
-            println "groovy.srcDirs = ${groovy.srcDirs}"
-            println "java.srcDirs = ${java.srcDirs}"
-            println "resources.srcDirs = ${resources.srcDirs}"
-            println "java.files = ${java.files.name}"
-            println "groovy.files = ${groovy.files.name}"
-            println "allJava.files = ${allJava.files.name}"
-            println "allGroovy.files = ${allGroovy.files.name}"
-            println "resources.files = ${resources.files.name}"
-            println "allSource.files = ${allSource.files.name}"
-            println "output.classesDir = ${output.classesDir}"
-            println "output.resourcesDir = ${output.resourcesDir}"
-            println "output.files = ${output.files}"
-        }
-        test {
-            println "=============   Test =================="
-            println "groovy.srcDirs = ${groovy.srcDirs}"
-            println "java.srcDirs = ${java.srcDirs}"
-            println "resources.srcDirs = ${resources.srcDirs}"
-            println "java.files = ${java.files.name}"
-            println "groovy.files = ${groovy.files.name}"
-            println "allJava.files = ${allJava.files.name}"
-            println "allGroovy.files = ${allGroovy.files.name}"
-            println "resources.files = ${resources.files.name}"
-            println "allSource.files = ${allSource.files.name}"
-            println "output.classesDir = ${output.classesDir}"
-            println "output.resourcesDir = ${output.resourcesDir}"
-            println "output.files = ${output.files}"
-        }
-    }
+task collectJars(type: Copy) {
+    into "$buildDir/output/lib"
+    from configurations.compile
 }
-
 
 repositories {
     mavenCentral()
