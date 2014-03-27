@@ -1,0 +1,5 @@
+println "Hello"
+println "World"
+print "I am here"
+println "\rBack now"
+println "\ranother line"
